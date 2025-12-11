@@ -245,4 +245,3 @@ mini-erp-project/
 For questions or help:
 
 🔗 **GitHub:** [Rachana-Hegde](https://github.com/Rachana-Hegde)
-📧 **Email:** [your-email@example.com](mailto:your-email@example.com) *(optional)*
