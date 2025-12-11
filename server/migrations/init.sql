@@ -1,0 +1,76 @@
+CREATE TABLE IF NOT EXISTS users (
+id SERIAL PRIMARY KEY,
+username VARCHAR(100) UNIQUE NOT NULL,
+password_hash VARCHAR(255) NOT NULL,
+role VARCHAR(50) NOT NULL DEFAULT 'Project Manager',
+created_at TIMESTAMP DEFAULT now()
+);
+
+
+CREATE TABLE IF NOT EXISTS projects (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+budget NUMERIC(15,2) NOT NULL,
+spent NUMERIC(15,2) DEFAULT 0,
+progress INTEGER DEFAULT 0,
+status VARCHAR(50) DEFAULT 'Active',
+start_date DATE,
+end_date DATE,
+created_at TIMESTAMP DEFAULT now()
+);
+
+
+CREATE TABLE IF NOT EXISTS customers (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+contact VARCHAR(255)
+);
+
+
+CREATE TABLE IF NOT EXISTS vendors (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+contact VARCHAR(255)
+);
+
+
+CREATE TABLE IF NOT EXISTS invoices (
+id SERIAL PRIMARY KEY,
+project_id INTEGER REFERENCES projects(id) ON DELETE SET NULL,
+customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL,
+vendor_id INTEGER REFERENCES vendors(id) ON DELETE SET NULL,
+amount NUMERIC(15,2) NOT NULL,
+currency VARCHAR(10) DEFAULT 'INR',
+due_date DATE,
+status VARCHAR(50) DEFAULT 'Draft',
+created_at TIMESTAMP DEFAULT now()
+);
+
+
+CREATE TABLE IF NOT EXISTS transactions (
+id SERIAL PRIMARY KEY,
+invoice_id INTEGER REFERENCES invoices(id) ON DELETE SET NULL,
+account_code VARCHAR(20),
+amount NUMERIC(15,2) NOT NULL,
+type VARCHAR(10) CHECK (type IN ('debit','credit')),
+created_at TIMESTAMP DEFAULT now()
+);
+
+
+CREATE TABLE IF NOT EXISTS accounts (
+id SERIAL PRIMARY KEY,
+code VARCHAR(50) UNIQUE,
+name VARCHAR(255),
+balance NUMERIC(15,2) DEFAULT 0
+);
+
+
+CREATE TABLE IF NOT EXISTS exchange_rates (
+id SERIAL PRIMARY KEY,
+base_currency VARCHAR(10) NOT NULL,
+INSERT INTO exchange_rates (base_currency, target_currency, rate)
+VALUES
+('USD', 'INR', 83.50),
+('EUR', 'INR', 90.75),
+('INR', 'USD', 0.012),
+('INR', 'EUR', 0.011);

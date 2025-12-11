@@ -1,0 +1,194 @@
+/* Global page */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f6f8fb;
+  margin: 0;
+  padding: 20px;
+  color: #222;
+}
+
+/* Card look (your JSX already uses className="card") */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dashboard header */
+h2, h3 {
+  margin: 0 0 12px 0;
+  color: #1f2937;
+}
+
+/* Layout for the two cards container (works with inline flex in your JSX) */
+div[style*="display:'flex'"], /* fallback if inline styles kept */
+.dashboard-cards {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+/* Table wrapper spacing */
+section {
+  margin-top: 18px;
+}
+
+/* Table base */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.04);
+}
+
+/* Header row */
+table thead th {
+  background: #f1f5f9;
+  font-weight: 600;
+  padding: 12px 10px;
+  text-align: center;            /* CENTER HEADERS */
+  color: #0f172a;
+  border-bottom: 1px solid #e6eef7;
+}
+
+/* Body cells — CENTER EVERYTHING */
+table tbody td {
+  padding: 10px;
+  text-align: center;            /* CENTER CELLS */
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  color: #233043;
+}
+
+/* Row hover for readability */
+table tbody tr:hover td {
+  background: #fbfdff;
+}
+
+/* Make numeric amounts slightly bolder */
+table tbody td:nth-child(3) {
+  font-weight: 600;
+  color: #0b5ed7;
+}
+
+/* Responsive tweak: smaller screens stack nicely */
+@media (max-width: 720px) {
+  .card {
+    width: 100% !important;
+  }
+  table thead {
+    display: none; /* simple mobile fallback — keeps list readable */
+  }
+  table, table tbody, table tr, table td {
+    display: block;
+    width: 100%;
+  }
+  table tr {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e9f0f7;
+  }
+  table td {
+    text-align: left;
+    padding: 8px 10px;
+  }
+  table td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+}
+
+#root table thead th,
+#root table tbody td {
+  text-align: center !important;
+}
+
+/* ============================
+   FINANCE PAGE STYLING
+   ============================ */
+
+/* Center container */
+.finance-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+/* Finance title */
+.finance-container h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+/* Form inputs */
+.finance-form input,
+.finance-form select,
+.finance-form button {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #ffffff;
+}
+
+/* Button style */
+.finance-form button {
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.finance-form button:hover {
+  background: #1d4ed8;
+}
+
+/* Invoice list */
+.invoice-list {
+  margin-top: 25px;
+}
+
+.invoice-list h3 {
+  margin-bottom: 12px;
+  color: #1e293b;
+}
+
+.invoice-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.invoice-list li {
+  background: #ffffff;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status color coding */
+.status-paid {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.status-pending {
+  color: #eab308;
+  font-weight: 600;
+}
